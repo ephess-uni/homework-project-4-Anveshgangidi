@@ -6,9 +6,13 @@ from collections import defaultdict
 
 
 def reformat_dates(old_dates):
-    """Accepts a list of date strings in format yyyy-mm-dd, re-formats each
-    element to a format dd mmm yyyy--01 Jan 2001."""
-    pass
+    new_dates = []
+    mons = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
+    for date in old_dates:
+        date_list = date.split('-')
+        new_date = date_list[2]+" " mons[int(date_list[1])-1]+" "+date_list[0]
+        new_dates.append(new_date)
+    return new_dates
 
 
 def date_range(start, n):
