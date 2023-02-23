@@ -12,14 +12,21 @@ def reformat_dates(old_dates):
         date_list = date.split('-')
         new_date = date_list[2]+" "+mons[int(date_list[1])-1]+" "+date_list[0]
         new_dates.append(new_date)
+        print(new_date)
     return new_dates
 
 
 def date_range(start, n):
-    """For input date string `start`, with format 'yyyy-mm-dd', returns
-    a list of of `n` datetime objects starting at `start` where each
-    element in the list is one day after the previous."""
-    pass
+    output=[]
+    if not isinstance(email, str):
+        raise TypeError
+    else:
+        date_list=start.split('-')
+        for i in range(n):
+            output.append(datetime.datetime(date_list[0],date_list[1], date_list[1]+i, 0, 0))
+    return output
+
+
 
 
 def add_date_range(values, start_date):
