@@ -37,8 +37,6 @@ def add_date_range(values, start_date):
 
 
 def fees_report(infile, outfile):
-    """Calculates late fees per patron id and writes a summary report to
-    outfile."""
     pass
 
 
