@@ -7,14 +7,15 @@ from collections import defaultdict
 
 def reformat_dates(old_dates):
     """Returns given data in  dd mmm yyyy--01 Jan 2001. format"""
+    new_dates=[]
     for date in old_dates:
         new_date = datetime.strptime(date, '%Y-%m-%d').strftime('%d %b %Y') 
         new_dates.append(new_date)
     return new_dates
 
 
-
 def date_range(start, n):
+    """Returns n datetime objects starting from start"""
     output=[]
     if not isinstance(start, str):
         raise TypeError
@@ -25,8 +26,6 @@ def date_range(start, n):
         for i in range(n):
             output.append(start_date+timedelta(days=+i))
     return output
-
-
 
 
 def add_date_range(values, start_date):
