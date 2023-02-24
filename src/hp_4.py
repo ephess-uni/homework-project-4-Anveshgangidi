@@ -29,9 +29,9 @@ def date_range(start, n):
 
 def add_date_range(values, start_date):
     """Returns date and values as piar"""
-   expected_dates = date_range(start_date, len(values))
-   expected = list(zip(expected_dates, values))
-   return expected
+    expected_dates = date_range(start_date, len(values))
+    expected = list(zip(expected_dates, values))
+    return expected
 
 
 def fees_report(infile, outfile):
@@ -60,6 +60,7 @@ def fees_report(infile, outfile):
                 if k == "late_fees":
                     if len(str(v).split('.')[-1]) != 2:
                         ele[k] = str(v)+'0'
+                        
     with open(outfile,"w", newline="") as file:
         col = ['patron_id', 'late_fees']
         writer = DictWriter(file, fieldnames=col)
