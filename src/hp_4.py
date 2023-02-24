@@ -1,6 +1,6 @@
 # hp_4.py
 #
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from csv import DictReader, DictWriter
 from collections import defaultdict
 
@@ -12,18 +12,19 @@ def reformat_dates(old_dates):
         date_list = date.split('-')
         new_date = date_list[2]+" "+mons[int(date_list[1])-1]+" "+date_list[0]
         new_dates.append(new_date)
-        print(new_date)
     return new_dates
-
 
 def date_range(start, n):
     output=[]
-    if not isinstance(email, str):
+    if not isinstance(start, str):
+        raise TypeError
+    elif not isinstance(n, int):
         raise TypeError
     else:
         date_list=start.split('-')
+        start_date=datetime(year=int(date_list[0]), month=int(date_list[1]), day=int(date_list[2]))
         for i in range(n):
-            output.append(datetime.datetime(date_list[0],date_list[1], date_list[1]+i, 0, 0))
+            output.append(start_date+timedelta(days=+i))
     return output
 
 
