@@ -1,47 +1,36 @@
 # hp_4.py
 #
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta
 from csv import DictReader, DictWriter
 from collections import defaultdict
 
 
 def reformat_dates(old_dates):
-    new_dates = []
-    mons = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
-    for date in old_dates:
-        date_list = date.split('-')
-        new_date = date_list[2]+" "+mons[int(date_list[1])-1]+" "+date_list[0]
-        new_dates.append(new_date)
-    return new_dates
+    """Accepts a list of date strings in format yyyy-mm-dd, re-formats each
+    element to a format dd mmm yyyy--01 Jan 2001."""
+    pass
+
 
 def date_range(start, n):
-    output=[]
-    if not isinstance(start, str):
-        raise TypeError
-    elif not isinstance(n, int):
-        raise TypeError
-    else:
-        date_list=start.split('-')
-        start_date=datetime(year=int(date_list[0]), month=int(date_list[1]), day=int(date_list[2]))
-        for i in range(n):
-            output.append(start_date+timedelta(days=+i))
-    return output
-
-
+    """For input date string `start`, with format 'yyyy-mm-dd', returns
+    a list of of `n` datetime objects starting at `start` where each
+    element in the list is one day after the previous."""
+    pass
 
 
 def add_date_range(values, start_date):
-   expected_dates = date_range(start_date, len(values))
-   expected = list(zip(expected_dates, values))
-   return expected
+    """Adds a daily date range to the list `values` beginning with
+    `start_date`.  The date, value pairs are returned as tuples
+    in the returned list."""
+    pass
 
 
 def fees_report(infile, outfile):
-    input_data = csv.DictReader(infile)
-    fieldnames = ['patron_id', 'late_fees']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames) 
-    writer.writeheader()
-    writer.writerow({'patron_id': '17-873-8783', 'late_fees': '15.00'})
+    """Calculates late fees per patron id and writes a summary report to
+    outfile."""
+    pass
+
+
 # The following main selection block will only run when you choose
 # "Run -> Module" in IDLE.  Use this section to run test code.  The
 # template code below tests the fees_report function.
