@@ -12,6 +12,8 @@ def reformat_dates(old_dates):
         new_dates.append(new_date)
     return new_dates
 
+
+
 def date_range(start, n):
     output=[]
     if not isinstance(start, str):
@@ -42,25 +44,25 @@ def fees_report(infile, outfile):
         input_dict = DictReader(fi)
         for item in input_dict:
             row={}
-            num_of_days=datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y') 
-            if(day1.days>0):
+            num_of_days=(datetime.strptime(item['date_returned'],'%m/%d/%Y')- datetime.strptime(item['date_due'],'%m/%d/%Y')).days
+            if(num_of_days>0):
                 row["patron_id"]=item['patron_id']
-                row["late_fees"]=round(day1.days*0.25, 2)
+                row["late_fees"]=round(num_of_days*0.25, 2)
             else:
-                di["patron_id"]=item['patron_id']
-                di["late_fees"]=0.00
+                row["patron_id"]=item['patron_id']
+                row["late_fees"]=0.00
             rows.append(row)
         aggregated_output = {}
         for row in rows :
-             key = (row['patron_id'])
-             aggregated_data[key] = aggregated_data.get(key, 0) + row['late_fees']
+            key = (row['patron_id'])
+            aggregated_output[key] = aggregated_output.get(key, 0) + row['late_fees']
         fee = [{'patron_id': key, 'late_fees': value} for key, value in aggregated_output.items()]
         for ele in fee:
             for k,v in ele.items():
                 if k == "late_fees":
                     if len(str(v).split('.')[-1]) != 2:
                         ele[k] = str(v)+'0'
-                        
+
     with open(outfile,"w", newline="") as file:
         col = ['patron_id', 'late_fees']
         writer = DictWriter(file, fieldnames=col)
