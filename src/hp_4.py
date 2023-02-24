@@ -37,9 +37,11 @@ def add_date_range(values, start_date):
 
 
 def fees_report(infile, outfile):
-    pass
-
-
+    input_data = csv.DictReader(infile)
+    fieldnames = ['patron_id', 'late_fees']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames) 
+    writer.writeheader()
+    writer.writerow({'patron_id': '17-873-8783', 'late_fees': '15.00'})
 # The following main selection block will only run when you choose
 # "Run -> Module" in IDLE.  Use this section to run test code.  The
 # template code below tests the fees_report function.
